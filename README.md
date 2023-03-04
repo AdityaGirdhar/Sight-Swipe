@@ -2,7 +2,7 @@
 
 > Developed an AI-based approach for controlling the mouse movement using Python and openCV with real-time camera that detects hand landmarks, tracks gesture patterns instead of a physical mouse.
 
-## Dependencies  -
+## Dependencies
 > Please install all the required dependencies.
 * openCV - (For image processing and drawing)
 * mediapipe - (For Hand Tracking)
@@ -16,7 +16,7 @@ To setup the system for development on your local machine, please follow the ins
 1. Clone the repository to your machine
 
    ```bash
-   git clone https://github.com/AdityaGirdhar/ai-virtual-mouse.git
+   git clone https://github.com/AdityaGirdhar/Sight-Swipe.git
    ```
 
 2. Run the ```AIVirtualMouse.py``` python file.
