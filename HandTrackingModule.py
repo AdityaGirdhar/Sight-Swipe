@@ -1,10 +1,3 @@
-"""
-Hand Tracing Module
-By: Murtaza Hassan
-Youtube: http://www.youtube.com/c/MurtazasWorkshopRoboticsandAI
-Website: https://www.computervision.zone/
-"""
-
 import cv2
 import mediapipe as mp
 import time
@@ -20,8 +13,7 @@ class handDetector():
         self.trackCon = trackCon
 
         self.mpHands = mp.solutions.hands
-        self.hands = self.mpHands.Hands(self.mode, self.maxHands,
-                                        self.detectionCon, self.trackCon)
+        self.hands = self.mpHands.Hands(self.mode, self.maxHands, self.detectionCon, self.trackCon)
         self.mpDraw = mp.solutions.drawing_utils
         self.tipIds = [4, 8, 12, 16, 20]
 
@@ -33,9 +25,7 @@ class handDetector():
         if self.results.multi_hand_landmarks:
             for handLms in self.results.multi_hand_landmarks:
                 if draw:
-                    self.mpDraw.draw_landmarks(img, handLms,
-                                               self.mpHands.HAND_CONNECTIONS)
-
+                    self.mpDraw.draw_landmarks(img, handLms, self.mpHands.HAND_CONNECTIONS)
         return img
 
     def findPosition(self, img, handNo=0, draw=True):
@@ -46,7 +36,7 @@ class handDetector():
         if self.results.multi_hand_landmarks:
             myHand = self.results.multi_hand_landmarks[handNo]
             for id, lm in enumerate(myHand.landmark):
-                # print(id, lm)
+            # print(id, lm)
                 h, w, c = img.shape
                 cx, cy = int(lm.x * w), int(lm.y * h)
                 xList.append(cx)
@@ -61,32 +51,27 @@ class handDetector():
             bbox = xmin, ymin, xmax, ymax
 
             if draw:
-                cv2.rectangle(img, (xmin - 20, ymin - 20), (xmax + 20, ymax + 20),
-                              (0, 255, 0), 2)
+                cv2.rectangle(img, (xmin - 20, ymin - 20), (xmax + 20, ymax + 20), (0, 255, 0), 2)
 
         return self.lmList, bbox
 
     def fingersUp(self):
         fingers = []
-        # Thumb
-        if self.lmList[self.tipIds[0]][1] > self.lmList[self.tipIds[0] - 1][1]:
+    # Thumb
+        if self.lmList[self.tipIds[0]][1] > self.lmList[self.tipIds[0] -1][1]:
             fingers.append(1)
         else:
             fingers.append(0)
-
-        # Fingers
+    # Fingers
         for id in range(1, 5):
-
-            if self.lmList[self.tipIds[id]][2] < self.lmList[self.tipIds[id] - 2][2]:
+            if self.lmList[self.tipIds[id]][2] < self.lmList[self.tipIds[id] -2][2]:
                 fingers.append(1)
             else:
                 fingers.append(0)
-
-        # totalFingers = fingers.count(1)
-
+    # totalFingers = fingers.count(1)
         return fingers
 
-    def findDistance(self, p1, p2, img, draw=True,r=15, t=3):
+    def findDistance(self, p1, p2, img, draw=True, r=15, t=3):
         x1, y1 = self.lmList[p1][1:]
         x2, y2 = self.lmList[p2][1:]
         cx, cy = (x1 + x2) // 2, (y1 + y2) // 2
@@ -100,7 +85,6 @@ class handDetector():
 
         return length, img, [x1, y1, x2, y2, cx, cy]
 
-
 def main():
     pTime = 0
     cTime = 0
@@ -112,17 +96,13 @@ def main():
         lmList, bbox = detector.findPosition(img)
         if len(lmList) != 0:
             print(lmList[4])
-
         cTime = time.time()
         fps = 1 / (cTime - pTime)
         pTime = cTime
-
         cv2.putText(img, str(int(fps)), (10, 70), cv2.FONT_HERSHEY_PLAIN, 3,
                     (255, 0, 255), 3)
-
         cv2.imshow("Image", img)
         cv2.waitKey(1)
-
 
 if __name__ == "__main__":
     main()
