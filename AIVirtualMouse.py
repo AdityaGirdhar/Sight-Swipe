@@ -62,9 +62,9 @@ while True:
             length, img, lineInfo = detector.findDistance(8, 12, img)
 
             # Step10: Click mouse if distance short
-            if length < 40:
-                cv2.circle(img, (lineInfo[4], lineInfo[5]), 15, (0, 255, 0), cv2.FILLED)
-                autopy.mouse.click()
+            #if length < 40:
+                #cv2.circle(img, (lineInfo[4], lineInfo[5]), 15, (0, 255, 0), cv2.FILLED)
+                #autopy.mouse.click()
 
     # Step11: Frame rate
     cTime = time.time()
