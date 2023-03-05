@@ -19,6 +19,6 @@ To setup the system for development on your local machine, please follow the ins
    git clone https://github.com/AdityaGirdhar/Sight-Swipe.git
    ```
 
-2. Run the ```AIVirtualMouse.py``` python file.
+2. Run the ```AIVirtualMouse.py``` python file. 
    
 
