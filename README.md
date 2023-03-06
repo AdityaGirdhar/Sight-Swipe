@@ -11,7 +11,7 @@
 
 ## Installation
 
-To setup the system for development on your local machine, please follow the instructions below:
+To setup the system for development on your local machine, please follow the instructions below :
 
 1. Clone the repository to your machine
 
